@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors()); // Povolení CORS pro všechny domény, abyste mohli volat API z React aplikace
 
 app.get('/api/orders', (req, res) => {
-    const sql = 'SELECT (number, status) FROM c5pneutyres.SE_SalesOrder'; // Nahraďte "your_table_name" názvem vaší tabulky
+    const sql = 'SELECT number, status FROM c5pneutyres.SE_SalesOrder'; // Nahraďte "your_table_name" názvem vaší tabulky
     db.query(sql, (err, results) => {
         if (err) {
             res.status(500).send(`Server error: ${err.message}`);
