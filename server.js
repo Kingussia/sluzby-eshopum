@@ -10,7 +10,7 @@ app.use(cors()); // Povolení CORS pro všechny domény, abyste mohli volat API 
 // TODO: Zde vložte kód pro připojení k databázi
 
 app.get('/api/orders', (req, res) => {
-    const sql = 'SELECT * FROM SE_SalesOrder'; // Nahraďte "your_table_name" názvem vaší tabulky
+    const sql = 'SELECT * FROM c5.pneutyres.SE_SalesOrder'; // Nahraďte "your_table_name" názvem vaší tabulky
     db.query(sql, (err, results) => {
         if (err) {
             res.status(500).send('Server error');
