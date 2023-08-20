@@ -1,3 +1,4 @@
+const db = require('./db');
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -8,15 +9,17 @@ app.use(cors()); // Povolení CORS pro všechny domény, abyste mohli volat API 
 // Předpokládáme, že máte nastavené připojení k databázi
 // TODO: Zde vložte kód pro připojení k databázi
 
-app.get('/api/orders', async (req, res) => {
-    try {
-        // TODO: Vytvořte dotaz na databázi, který vrátí seznam objednávek
-        const orders = []; // Toto je jen placeholder. Nahraďte tento řádek dotazem na databázi.
-        res.json(orders);
-    } catch (error) {
-        res.status(500).send('Server error');
-    }
+app.get('/api/orders', (req, res) => {
+    const sql = 'SELECT * FROM SE_SalesOrder'; // Nahraďte "your_table_name" názvem vaší tabulky
+    db.query(sql, (err, results) => {
+        if (err) {
+            res.status(500).send('Server error');
+            return;
+        }
+        res.json(results);
+    });
 });
+
 
 app.get('/', (req, res) => {
     res.send('API is working');
